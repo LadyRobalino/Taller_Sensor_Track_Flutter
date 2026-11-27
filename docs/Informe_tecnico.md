@@ -347,3 +347,4 @@ pumpWidget() construye la aplicación en el entorno de pruebas. pump() avanza el
 1. Mover el celular y explicar qué hace el flujo en MotionPage. Guardar una lectura y seguir la llamada hasta ReadingStore.save().
 
 1. Abrir Historial, seleccionar la lectura y comprobar la fila correspondiente en Supabase. Mostrar el gráfico y la última ubicación en Estadísticas.
+.
