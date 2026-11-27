@@ -3,8 +3,8 @@ import 'dart:math' as math;
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import 'reading.dart';
-import 'sensor_theme.dart';
+import '../reading.dart';
+import '../sensor_theme.dart';
 
 class RecordsPage extends StatefulWidget {
   const RecordsPage({super.key, this.store, required this.statistics});

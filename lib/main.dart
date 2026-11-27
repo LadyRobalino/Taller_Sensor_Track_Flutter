@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'accelerometer_page.dart';
-import 'location_page.dart';
+import 'pages/accelerometer_page.dart';
+import 'pages/location_page.dart';
 import 'reading.dart';
-import 'records_page.dart';
+import 'pages/records_page.dart';
 import 'sensor_theme.dart';
 
 Future<void> main() async {

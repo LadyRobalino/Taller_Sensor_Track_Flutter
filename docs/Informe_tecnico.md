@@ -9,10 +9,10 @@ SensorTrack permite observar datos de movimiento del teléfono, consultar su ubi
 | Componente | Responsabilidad |
 |---|---|
 | `lib/main.dart` | Inicializa Supabase cuando recibe la URL y la clave pública. Presenta el splash, la navegación y el estado de conexión. |
-| `lib/accelerometer_page.dart` | Se suscribe al acelerómetro y al giroscopio mediante `sensors_plus`, actualiza los tres ejes de cada sensor y cancela las suscripciones al pausar o salir. |
-| `lib/location_page.dart` | Usa `geolocator` para pedir permiso, obtener una posición y mostrar coordenadas, precisión y fecha. Solicita confirmación al guardar la ubicación. |
+| `lib/pages/accelerometer_page.dart` | Se suscribe al acelerómetro y al giroscopio mediante `sensors_plus`, actualiza los tres ejes de cada sensor y cancela las suscripciones al pausar o salir. |
+| `lib/pages/location_page.dart` | Usa `geolocator` para pedir permiso, obtener una posición y mostrar coordenadas, precisión y fecha. Solicita confirmación al guardar la ubicación. |
 | `lib/reading.dart` | Representa las mediciones y concentra las operaciones de lectura y escritura en Supabase. |
-| `lib/records_page.dart` | Consulta el historial, muestra detalles y calcula conteos, rangos y la última ubicación. Dibuja con `fl_chart` los tres ejes del acelerómetro según el tiempo de captura. |
+| `lib/pages/records_page.dart` | Consulta el historial, muestra detalles y calcula conteos, rangos y la última ubicación. Dibuja con `fl_chart` los tres ejes del acelerómetro según el tiempo de captura. |
 
 ## Flujo de una medición
 

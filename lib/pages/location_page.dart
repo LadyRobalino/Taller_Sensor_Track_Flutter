@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
-import 'reading.dart';
-import 'sensor_theme.dart';
+import '../reading.dart';
+import '../sensor_theme.dart';
 
 class LocationPage extends StatefulWidget {
   const LocationPage({

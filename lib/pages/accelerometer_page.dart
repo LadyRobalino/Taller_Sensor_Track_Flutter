@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
-import 'reading.dart';
-import 'sensor_theme.dart';
+import '../reading.dart';
+import '../sensor_theme.dart';
 
 class MotionPage extends StatefulWidget {
   const MotionPage({
