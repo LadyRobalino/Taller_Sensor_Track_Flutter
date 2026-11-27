@@ -86,8 +86,8 @@ class ReadingStore {
       final rows = await client
           .from('sensor_readings')
           .select()
-          .order('recorded_at')
-          .order('id')
+          .order('recorded_at', ascending: true)
+          .order('id', ascending: true)
           .range(offset, offset + pageSize - 1);
       readings.addAll(rows.map(Reading.fromJson));
       if (rows.length < pageSize) return readings;

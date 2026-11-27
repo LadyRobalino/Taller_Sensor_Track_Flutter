@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 import 'reading.dart';
+import 'sensor_theme.dart';
 
 class MotionPage extends StatefulWidget {
   const MotionPage({
@@ -117,9 +118,21 @@ class _MotionPageState extends State<MotionPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    sensor.label,
-                    style: Theme.of(context).textTheme.titleLarge,
+                  Row(
+                    children: [
+                      SensorIcon(sensor),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          sensor.label,
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
+                                color: sensor.accent,
+                                fontWeight: FontWeight.w700,
+                              ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -130,6 +143,10 @@ class _MotionPageState extends State<MotionPage> {
                   ),
                   const SizedBox(height: 12),
                   FilledButton(
+                    style: FilledButton.styleFrom(
+                      backgroundColor: sensor.accent,
+                      foregroundColor: Colors.white,
+                    ),
                     onPressed:
                         readings[sensor] == null ||
                             errors.contains(sensor) ||

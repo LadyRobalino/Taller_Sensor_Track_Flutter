@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'reading.dart';
+import 'sensor_theme.dart';
 
 class LocationPage extends StatefulWidget {
   const LocationPage({
@@ -113,6 +114,10 @@ class _LocationPageState extends State<LocationPage> {
       padding: const EdgeInsets.all(16),
       children: [
         FilledButton.icon(
+          style: FilledButton.styleFrom(
+            backgroundColor: Sensor.gps.accent,
+            foregroundColor: Colors.white,
+          ),
           onPressed: busy ? null : locate,
           icon: const Icon(Icons.my_location),
           label: const Text('Obtener ubicación'),

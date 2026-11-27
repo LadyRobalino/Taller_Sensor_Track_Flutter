@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'reading.dart';
+import 'sensor_theme.dart';
 
 class RecordsPage extends StatefulWidget {
   const RecordsPage({super.key, this.store, required this.statistics});
@@ -184,13 +185,16 @@ class _RecordsPageState extends State<RecordsPage> {
               return ListView(
                 children: [
                   for (final reading in readings.reversed)
-                    ListTile(
-                      title: Text(reading.sensor.label),
-                      subtitle: Text(
-                        '${reading.values}\n${reading.time.toLocal()}',
+                    Card(
+                      child: ListTile(
+                        leading: SensorIcon(reading.sensor),
+                        title: Text(reading.sensor.label),
+                        subtitle: Text(
+                          '${reading.values}\n${reading.time.toLocal()}',
+                        ),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () => details(reading),
                       ),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () => details(reading),
                     ),
                 ],
               );

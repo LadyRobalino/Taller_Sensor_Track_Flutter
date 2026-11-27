@@ -8,6 +8,7 @@ import 'accelerometer_page.dart';
 import 'location_page.dart';
 import 'reading.dart';
 import 'records_page.dart';
+import 'sensor_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,27 @@ class SensorTrackApp extends StatelessWidget {
     return MaterialApp(
       title: 'SensorTrack',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorSchemeSeed: const Color(0xff205d63)),
+      theme: ThemeData(
+        colorSchemeSeed: const Color(0xff5140a3),
+        scaffoldBackgroundColor: const Color(0xfff4f3fb),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xff29225b),
+          foregroundColor: Colors.white,
+        ),
+        navigationBarTheme: const NavigationBarThemeData(
+          backgroundColor: Colors.white,
+          indicatorColor: Color(0xffe5ddff),
+        ),
+        cardTheme: CardThemeData(
+          color: Colors.white,
+          elevation: 0,
+          margin: const EdgeInsets.only(bottom: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+            side: const BorderSide(color: Color(0xffe6e0f4)),
+          ),
+        ),
+      ),
       home: Dashboard(store: store, setupMessage: setupMessage),
     );
   }
@@ -156,26 +177,53 @@ class _DashboardState extends State<Dashboard> {
   Widget home() => ListView(
     padding: const EdgeInsets.all(16),
     children: [
-      Text(status, style: Theme.of(context).textTheme.titleMedium),
-      if (widget.store != null)
-        Align(
-          alignment: Alignment.centerLeft,
-          child: TextButton(
-            onPressed: checking ? null : check,
-            child: const Text('Verificar conexión'),
-          ),
+      Container(
+        padding: const EdgeInsets.all(22),
+        decoration: BoxDecoration(
+          gradient: trackGradient,
+          borderRadius: BorderRadius.circular(24),
         ),
-      const SizedBox(height: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Icon(Icons.sensors_rounded, color: Colors.white, size: 34),
+            const SizedBox(height: 16),
+            const Text(
+              'Conexión a Supabase',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 21,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(status, style: const TextStyle(color: Color(0xffeeeaff))),
+            if (widget.store != null) ...[
+              const SizedBox(height: 12),
+              FilledButton.tonalIcon(
+                onPressed: checking ? null : check,
+                icon: const Icon(Icons.refresh_rounded),
+                label: const Text('Verificar conexión'),
+              ),
+            ],
+          ],
+        ),
+      ),
+      const SizedBox(height: 24),
       Text(
         'Sensores del dispositivo',
         style: Theme.of(context).textTheme.titleLarge,
       ),
+      const SizedBox(height: 10),
       for (final sensor in Sensor.values)
-        ListTile(
-          title: Text(sensor.label),
-          subtitle: Text(availability[sensor] ?? 'Por comprobar'),
-          trailing: const Icon(Icons.chevron_right),
-          onTap: () => select(sensor == Sensor.gps ? 2 : 1),
+        Card(
+          child: ListTile(
+            leading: SensorIcon(sensor),
+            title: Text(sensor.label),
+            subtitle: Text(availability[sensor] ?? 'Por comprobar'),
+            trailing: Icon(Icons.chevron_right, color: sensor.accent),
+            onTap: () => select(sensor == Sensor.gps ? 2 : 1),
+          ),
         ),
     ],
   );
@@ -184,13 +232,17 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     if (splash)
       return const Scaffold(
+        backgroundColor: Color(0xff29225b),
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.sensors, size: 68),
+              Icon(Icons.sensors, size: 68, color: Color(0xffded5ff)),
               SizedBox(height: 12),
-              Text('SensorTrack', style: TextStyle(fontSize: 30)),
+              Text(
+                'SensorTrack',
+                style: TextStyle(fontSize: 30, color: Colors.white),
+              ),
             ],
           ),
         ),
